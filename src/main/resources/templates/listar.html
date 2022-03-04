@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head th:replace="layout/layout :: head"></head>
+
+  <!-- Custom styles for this template -->
+
+    <link th:href="@{/css/sticky-footer-navbar.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+
+
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+	
+ <main role="main">     
+      <hr>
+      <div class="container"> 
+
+        <div class="card">
+          <h4 class="card-header"><strong>Listado de Usuarios</strong></h4>              
+          <div class="card-body">            
+            <hr>
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <table class="table table-hover">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Nombre:</th>  
+                  <th scope="col">Area:</th>
+                  <th scope="col">Correo:</th>                
+                  <th scope="col">Estatus</th>
+                  <th scope="col">Roles</th>
+                  <th scope="col">Operaciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="usuario : ${usuarios}">
+                  <td th:text="${usuario.id}"></td>
+                  <td th:text="${usuario.username}"></td> 
+                   <td th:text="${usuario.area}"></td>
+                  <td th:text="${usuario.correo}"></td>                  
+                  
+                  <td th:text="${usuario.enabled == true ? 'Activo' : 'Bloqueado'}"></td>
+                  <td th:text="${usuario.roles}"></td>
+                 
+                  <td> 
+                  <a th:href="@{/Usuarios/CreateUser/} + ${usuario.id}"  class="btn btn-success btn-sm" role="button" title="Editar los Usuarios."><i class="fas fa-pen-nib"></i></a>
+                   <a th:href="@{/Usuarios/delete/} + ${usuario.id}" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar los Usuarios"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <span th:switch="${usuario.enabled }">
+                    	<a th:case="${true}" th:href="@{/Usuarios/lock/{id} (id=${usuario.id})}" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>	
+                    	<a th:case="${false}" th:href="@{/Usuarios/unlock/{id} (id=${usuario.id}) }" onclick="return confirm('¿Desea desbloquear el usuario?')" class="btn btn-danger btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>
+                    </span>
+                  </td>
+                  
+                </tr>
+                                               
+              </tbody>
+            </table>
+            <nav th:replace="paginator-nav :: paginator"></nav>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    </main>	
+	
+	
+	
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script> 
+	<script th:src="@{/js/popper.min.js}"></script> 
+	<script th:src="@{/js/bootstrap.min.js}"></script>  
+	<script th:src="@{/js/jquery-ui.min.js}"></script> 
+	
+	
+	
+</body>
+</html>

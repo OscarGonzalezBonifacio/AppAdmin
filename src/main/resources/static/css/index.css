@@ -1,0 +1,193 @@
+:root {
+    --fuente-principal:  'Lato', sans-serif; 
+    --primario: #da595e;
+    --obscuro: #484848;
+    --claro: #ffffff;
+}
+
+html {
+    box-sizing: border-box;
+}
+body {
+    font-family: var(--fuente-principal);
+}
+
+h1 {
+    font-weight: 400;
+    font-size: 2.6rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.8rem;
+}
+img {
+    max-width: 100%;
+}
+
+/** Colores **/
+.hospedaje {
+    color: #274154;
+}
+
+.concierto {
+    color: #da595e;
+}
+.clase {
+    color: #598dda;
+}
+.paseo {
+    color: #940ad4;
+}
+
+
+/** Header */
+
+.hero {
+	/*tamano de la altura de la imagen*/
+    height: 80vh;
+    background-image: url("https://i.imgur.com/UHp3vB4.jpg");
+
+    display: grid;
+    
+    grid-template-rows: 1fr 2fr;
+    background-position: 0 0;
+    background-size: 100% 100%;
+    transition: background-position .3s ease;
+}
+.header {
+    align-self: start;
+    width: 100%;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navegacion a{
+    color: var(--claro);
+    text-decoration: none;
+    margin-right: 1rem;
+}
+.navegacion a:last-of-type {
+    margin-right: 0;
+}
+
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contenido-hero {
+    display: grid;
+    grid-template-columns: 5% auto 5%;
+    grid-template-rows: max-content auto;
+}
+/*el mensaje de servicios*/
+.contenido-hero h1{
+    grid-column: 3 / 4;
+    color: white;
+    grid-row: 1 / 2;
+    justify-content: space-around;
+     margin-left: 9rem;
+}
+main > section {
+    margin-bottom: 2rem;
+}
+
+.contenedor-cards {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr) );
+}
+
+.card img {
+    width: 100%;
+}
+
+
+.info .categoria {
+    text-transform: uppercase;
+    font-size: .9rem;
+    font-weight: 700;
+}
+.info .titulo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin: 0;
+}
+.info .precio {
+    color: var(--obscuro);
+    font-size: .9rem;
+}
+/** Premium **/
+.premium {
+    background-image: url(../img/hospedaje-pro.jpg);
+    background-position: center right;
+    background-repeat: no-repeat;
+    height: 28rem;
+    grid-template-columns: unset;
+}
+@media (min-width:768px) {
+    .premium {
+        grid-template-columns: auto 30%;
+    }
+}
+
+.premium .info {
+    grid-column: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+.premium .info h2 {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+@media (min-width:768px) { 
+    .premium .info {
+        grid-column: 2 / 3;
+    }    
+    .premium .info h2 {
+        text-align: right;
+    }
+}
+
+.boton {
+    background-color: var(--claro);
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    color: var(--obscuro);
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: 400;
+    -webkit-box-shadow: 0px 14px 43px -21px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 14px 43px -21px rgba(0,0,0,1);
+    box-shadow: 0px 14px 43px -21px rgba(0,0,0,1);
+    transition: all .3s ease-in-out;
+}
+.boton:hover {
+    background-color: var(--primario);
+    color: var(--claro);
+}
+
+
+/** Populares **/
+.destinos .contenedor-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr) );
+}
+.destinos .card {
+    position: relative;
+}
+.destinos .info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    color: var(--claro);
+}
+.destinos .info .titulo {
+    font-size: 1.8rem;
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="layout/layout :: head"></head>
+
+<title th:if="${usuario.id == null}">Crear Usuario Nuevo</title>
+<title th:unless="${usuario.id == null}">Edit User</title>
+
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="container text-center">
+		<div>
+			<h1 class ="text-align:center" th:if="${usuario.id == null}">Create New User</h1>
+			<h1 th:unless="${usuario.id == null}">Edit User</h1>
+		</div>
+		<form th:action="@{/Usuarios/CreateUser}" th:object="${usuario}"
+			method="post" style="max-width: 600px; margin: 0 auto;">
+			<input type="hidden" th:field="*{id}" th:value="${usuario.id}">
+
+			<div class="m-3">
+				<div class="form-group row">
+					<label for="nombre" class="col-sm-2 col-form-label">Nombre:
+					</label>
+					<div class="col-sm-6">
+
+						<input type="text" th:field="*{username}" class="form-control"
+							required>
+					</div>
+				</div>
+
+
+
+				<div class="form-group row">
+					<label for="nombre" class="col-sm-2 col-form-label">Estado:
+					</label>
+					<div class="col-sm-6">
+
+						
+
+							<select id="perfil" name="perfil" th:field="*{enabled}"
+								class="form-control">
+								<option value="1">HABILITADO</option>
+								<option value="0">DESABILITADO</option>
+							</select>
+						</div>
+					</div>
+					
+					
+					<div class="form-group row">
+					<label for="nombre" class="col-sm-2 col-form-label">Area:
+					</label>
+					<div class="col-sm-6">
+
+						
+
+							<select id="areaa" name="areaa" th:field="*{area}"
+								class="form-control">
+								<option value="reursos humanos">Reursos Humano</option>
+								<option value="produccion">Produccion</option>
+								<option value="Finanzas">Finanzas</option>
+							</select>
+						</div>
+					</div>
+					
+					<div >
+				<div class="form-group row">
+					<label for="correo" class="col-sm-2 col-form-label"> Correo:
+					</label>
+					<div class="col-sm-6">
+
+						<input type="text" th:field="*{correo}" class="form-control"
+							required>
+					</div>
+				</div>
+					
+
+
+					<div class="form-group row">
+						<label class="col-form-label col-sm-2">Contrase&ntilde;a: </label>
+						<div class="col-sm-6">
+							<input type="password" th:field="*{password}"
+								class="form-control" required>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-form-label col-sm-2">Roles: </label>
+						<div class="col-sm-6 text-left">
+							<th:block th:each="role : ${listRoles}">
+								<div>
+									<input type="checkbox" th:field="*{roles}"
+										th:text="${role.authority}" th:value="${role.id}" class="m-2">
+								</div>
+							</th:block>
+						</div>
+					</div>
+
+					<div class="text-center p-3">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+		</form>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+	
+
+
+
+
+
+
+
+</html>
