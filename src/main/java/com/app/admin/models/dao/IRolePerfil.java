@@ -29,12 +29,12 @@ public interface IRolePerfil extends PagingAndSortingRepository<Usuario, Long> {
 //}
 //Cambiar estatus a 0 (bloquear)
 	@Modifying
-	@Query("UPDATE Usuario u SET u.enabled=0 WHERE u.id = :paramIdUsuario")
+	@Query("UPDATE Usuario u SET u.enabled=false WHERE u.id = :paramIdUsuario")
 	int lock(@Param("paramIdUsuario") long idUsuario);
 	
 	// Cambiar estatus a 1 (activar)
 	@Modifying
-	@Query("UPDATE Usuario u SET u.enabled=1 WHERE u.id = :paramIdUsuario")
+	@Query("UPDATE Usuario u SET u.enabled=true WHERE u.id = :paramIdUsuario")
 	int unlock(@Param("paramIdUsuario") long idUsuario);
 
 
